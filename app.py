@@ -1,9 +1,9 @@
 from flask import Flask
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CsrfProtect
 
 app = Flask(__name__)
 
-csrf = CSRFProtect(app)                                                                                                                           
+csrf = CsrfProtect(app)                                                                                                                           
 
 @app.route("/")
 def pagina_inicial():
