@@ -26,7 +26,7 @@ jobs:
       - name: Unit Test
         run: python -m unittest -v test
 
-  SonarCloud:
+    SonarCloud:
       name: SonarCloud
       runs-on: ubuntu-latest
       steps:
@@ -39,7 +39,7 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  Build:
+    Build:
       needs: [UnitTest,SonarCloud ]
       name: Build
       runs-on: ubuntu-latest
@@ -61,9 +61,9 @@ jobs:
             HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
 
-  Deploy:
-    needs: Build
-    runs-on: ubuntu-latest
+    Deploy:
+      needs: Build
+      runs-on: ubuntu-latest
 
     steps:
       - name: Deploy Heroku
